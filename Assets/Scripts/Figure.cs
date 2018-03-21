@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Figure : MonoBehaviour {
 
+    float lastFallDown = 0;
 
     // Use this for initialization
     void Start () {
@@ -15,22 +16,19 @@ public class Figure : MonoBehaviour {
         if (Input.GetKeyDown("a") || Input.GetKeyDown("left"))
         {
             transform.position += new Vector3(-1, 0, 0);
-            Debug.Log(transform.position);
         }
         if (Input.GetKeyDown("d") || Input.GetKeyDown("right"))
         {
             transform.position += new Vector3(1, 0, 0);
-            Debug.Log(transform.position);
         }
-        if (Input.GetKeyDown("s") || Input.GetKeyDown("down"))
+        if (Input.GetKeyDown("s") || Input.GetKeyDown("down") || Time.time - lastFallDown >= 1)
         {
             transform.position += new Vector3(0, -1, 0);
-            Debug.Log(transform.position);
+            lastFallDown = Time.time;
         }
         if (Input.GetKeyDown("w") || Input.GetKeyDown("up"))
         {
             transform.Rotate(0, 0, -90);
-            Debug.Log(transform.position);
         }
     }
 }

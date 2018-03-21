@@ -1,23 +1,21 @@
 fileFormatVersion: 2
-guid: 6423cd0bde63aa2469bbc5fe68a15555
-timeCreated: 1521567306
-licenseType: Free
+guid: 02b8041c6ddcee3428810c7e7a438e0e
+timeCreated: 1484171297
+licenseType: Store
 TrueTypeFontImporter:
-  externalObjects: {}
   serializedVersion: 4
   fontSize: 16
   forceTextureCase: -2
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: ArcadeClassic
+  fontName: Liberation Sans
   fontNames:
-  - ArcadeClassic
+  - Liberation Sans
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1
-  useLegacyBoundsCalculation: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameGrid : MonoBehaviour {
 
-    public static Transform[,] gameGrid = new Transform[10, 20];
+    public static Transform[,] gameGrid = new Transform[14, 24];
 
     public static void PrintArray()
     {

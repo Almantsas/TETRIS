@@ -5,21 +5,28 @@ using UnityEngine;
 public class Spawner : MonoBehaviour {
 
     public GameObject[] figures;
+    public GameObject[] nextFigures;
+    int index;
+    int nextIndex;
 
     public void SpawnFigure()
     {
-        int i = Random.Range(0, figures.Length);
-        Instantiate(figures[i], transform.position, Quaternion.identity);
-    }
+        index = nextIndex;
+        Instantiate(figures[index], transform.position, Quaternion.identity);
 
+        if (nextFigures[nextIndex].activeSelf)
+        {
+            nextFigures[nextIndex].SetActive(false);
+        }
+
+        nextIndex = Random.Range(0, nextFigures.Length);
+        nextFigures[nextIndex].SetActive(true);
+        
+    }
 
 	// Use this for initialization
 	void Start () {
+        nextIndex = Random.Range(0, nextFigures.Length);
         SpawnFigure();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 }

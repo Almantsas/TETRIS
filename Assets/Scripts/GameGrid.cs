@@ -6,31 +6,47 @@ using UnityEngine.UI;
 public class GameGrid : MonoBehaviour {
 
     public static Transform[,] gameGrid = new Transform[14, 24];
+    static SpeedUp speed = FindObjectOfType(typeof(SpeedUp)) as SpeedUp;
 
-    public static void PrintArray()
+    public static void DeleteFullRows()
     {
-        string arrayOutput = "";
-        int iMax = gameGrid.GetLength(0) - 1;
-        int jMax = gameGrid.GetLength(1) - 1;
-
-        for(int j = jMax; j >= 0; j--)
+        for (int row = 21; row > 1; row--)
         {
-            for (int i = 0; i <= iMax; i++)
+            if (IsRowFull(row))
             {
-                if(gameGrid[i, j] == null)
+                Score.score++;
+                speed.IncreaseSpeed();
+                for (int col = 2; col < 12; col++)
                 {
-                    arrayOutput += "N";
+                    Destroy(gameGrid[col, row].gameObject);
+                    gameGrid[col, row] = null;
                 }
-                else
+
+                for (int rowM = row + 1; rowM < 22; rowM++)
                 {
-                    arrayOutput += "X";
+                    for (int col = 2; col < 12; col++)
+                    {
+                        if (gameGrid[col, rowM] != null)
+                        {
+                            gameGrid[col, rowM - 1] = gameGrid[col, rowM];
+                            gameGrid[col, rowM - 1].position += new Vector3(0, -1, 0);
+                            gameGrid[col, rowM] = null;
+                        }
+                    }
                 }
             }
-            arrayOutput += "\n";
         }
-
-        var myArrayComponent = GameObject.Find("Array").GetComponent<Text>();
-        myArrayComponent.text = arrayOutput;
     }
 
+    static bool IsRowFull(int row)
+    {
+        for (int col = 2; col < 12; col++)
+        {
+            if (gameGrid[col, row] == null)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 }

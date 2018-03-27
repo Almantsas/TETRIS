@@ -3,23 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpeedUp : MonoBehaviour {
+
     public GameObject speedUpText;
     public GameObject logo;
-
-    // Use this for initialization
-    void Start () {
-        InvokeRepeating("Show", 60f, 60f);
-        InvokeRepeating("Hide", 63f, 63f);
-    }
-
-    void Update()
-    {
-        if (Figure.speed < 0.3f)
-        {
-            CancelInvoke("Show");
-            CancelInvoke("Hide");
-        }
-    }
 
     void Show()
     {
@@ -31,5 +17,39 @@ public class SpeedUp : MonoBehaviour {
     {
         speedUpText.SetActive(false);
         logo.SetActive(true);
+    }
+
+    public void IncreaseSpeed()
+    {
+        if (Score.score == 5)
+        {
+            Figure.speed -= .1f;
+            Show();
+            Invoke("Hide", 3f);
+        }
+        if (Score.score == 15)
+        {
+            Figure.speed -= .1f;
+            Show();
+            Invoke("Hide", 3f);
+        }
+        if (Score.score == 25)
+        {
+            Figure.speed -= .1f;
+            Show();
+            Invoke("Hide", 3f);
+        }
+        if (Score.score == 35)
+        {
+            Figure.speed -= .1f;
+            Show();
+            Invoke("Hide", 3f);
+        }
+        if (Score.score == 45)
+        {
+            Figure.speed -= .1f;
+            Show();
+            Invoke("Hide", 3f);
+        }
     }
 }

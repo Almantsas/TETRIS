@@ -2,27 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class Figure : MonoBehaviour {
 
     float lastFallDown = 0;
     public static float speed = 1f;
-    public bool rotate;
+    public bool canRotate;
 
     // Use this for initialization
     void Start () {
-        InvokeRepeating("SpeedUp", 60f, 60f);
         IsOver();
     }
 
     // Update is called once per frame
     void Update () {
-        if (speed < 0.3f)
-        {
-            CancelInvoke("SpeedUp");
-        }
-
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
             transform.position += new Vector3(-1, 0, 0);
@@ -49,13 +42,14 @@ public class Figure : MonoBehaviour {
                 UpdateGameGrid();
             }
         }
-        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) || Time.time - lastFallDown >= speed)
+        if (Input.GetKey(KeyCode.Space) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) || Time.time - lastFallDown >= speed)
         {
             transform.position += new Vector3(0, -1, 0);
 
             if (!IsValidPos())
             {
                 transform.position += new Vector3(0, 1, 0);
+                GameGrid.DeleteFullRows();
                 enabled = false;
                 Invoke("Spawn", 0.5f);
             }
@@ -66,24 +60,9 @@ public class Figure : MonoBehaviour {
 
             lastFallDown = Time.time;
         }
-        if (Input.GetKey(KeyCode.Space))
-        {
-            transform.position += new Vector3(0, -1, 0);
-
-            if (!IsValidPos())
-            {
-                transform.position += new Vector3(0, 1, 0);
-                enabled = false;
-                Invoke("Spawn", 0.5f);
-            }
-            else
-            {
-                UpdateGameGrid();
-            }
-        }
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
-            if (rotate)
+            if (canRotate)
             {
                 transform.Rotate(0, 0, -90);
 
@@ -93,8 +72,10 @@ public class Figure : MonoBehaviour {
                 }
                 else
                 {
-                    Rotate();
-                    UpdateGameGrid();
+                    if (Rotate())
+                    {
+                        UpdateGameGrid();
+                    }
                 }
             }
         }
@@ -156,11 +137,9 @@ public class Figure : MonoBehaviour {
 
             GameGrid.gameGrid[(int)v.x, (int)v.y] = childCube;
         }
-
-        GameGrid.PrintArray();
     }
 
-    void Rotate()
+    bool Rotate()
     {
         foreach (Transform childCube in transform)
         {
@@ -173,6 +152,7 @@ public class Figure : MonoBehaviour {
                 {
                     transform.position += new Vector3(-1, 0, 0);
                     transform.Rotate(0, 0, 90);
+                    return false;
                 }
             }
             if (v.x == 0)
@@ -182,6 +162,7 @@ public class Figure : MonoBehaviour {
                 {
                     transform.position += new Vector3(-2, 0, 0);
                     transform.Rotate(0, 0, 90);
+                    return false;
                 }
             }
             if (v.x == 12)
@@ -191,6 +172,7 @@ public class Figure : MonoBehaviour {
                 {
                     transform.position += new Vector3(1, 0, 0);
                     transform.Rotate(0, 0, 90);
+                    return false;
                 }
             }
             if (v.x == 13)
@@ -200,6 +182,7 @@ public class Figure : MonoBehaviour {
                 {
                     transform.position += new Vector3(2, 0, 0);
                     transform.Rotate(0, 0, 90);
+                    return false;
                 }
             }
             if (v.y == 1)
@@ -209,6 +192,7 @@ public class Figure : MonoBehaviour {
                 {
                     transform.position += new Vector3(0, -1, 0);
                     transform.Rotate(0, 0, 90);
+                    return false;
                 }
             }
             if (v.y == 22)
@@ -218,24 +202,22 @@ public class Figure : MonoBehaviour {
                 {
                     transform.position += new Vector3(0, 1, 0);
                     transform.Rotate(0, 0, 90);
+                    return false;
                 }
             }
         }
+        return true;
     }
 
     void Spawn()
     {
         FindObjectOfType<Spawner>().SpawnFigure();
+        UpdateGameGrid();
     }
 
     Vector2 RoundVector(Vector2 v)
     {
         return new Vector2(Mathf.Round(v.x), Mathf.Round(v.y));
-    }
-
-    void SpeedUp()
-    {
-        speed -= .1f;
     }
 
     void IsOver()

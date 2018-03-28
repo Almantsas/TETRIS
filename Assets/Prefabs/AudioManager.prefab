@@ -9,17 +9,17 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1227448845450842}
+  m_RootGameObject: {fileID: 1226040916744084}
   m_IsPrefabParent: 1
---- !u!1 &1227448845450842
+--- !u!1 &1226040916744084
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4947507988320312}
-  - component: {fileID: 114280108388246344}
+  - component: {fileID: 4724793363405862}
+  - component: {fileID: 114260971907571482}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -27,12 +27,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4947507988320312
+--- !u!4 &4724793363405862
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1227448845450842}
+  m_GameObject: {fileID: 1226040916744084}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 8.48738, y: -18.47881, z: -2.3596253}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -40,12 +40,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114280108388246344
+--- !u!114 &114260971907571482
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1227448845450842}
+  m_GameObject: {fileID: 1226040916744084}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64e25c7832dcc884fa2b5cc27e24167c, type: 3}
@@ -57,40 +57,55 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+    mixerGroup: {fileID: 243282216248901222, guid: 31ad0aabfea88ad4ea0a0cd5e585b0a9,
+      type: 2}
     source: {fileID: 0}
   - name: Rotate
     clip: {fileID: 8300000, guid: 6d411159536beb34790856be5780ad75, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    mixerGroup: {fileID: 243282216248901222, guid: 31ad0aabfea88ad4ea0a0cd5e585b0a9,
+      type: 2}
     source: {fileID: 0}
   - name: Drop
     clip: {fileID: 8300000, guid: 6597cf9ea9b164b488d005d64343aa23, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    mixerGroup: {fileID: 243282216248901222, guid: 31ad0aabfea88ad4ea0a0cd5e585b0a9,
+      type: 2}
     source: {fileID: 0}
   - name: MainMenu
     clip: {fileID: 8300000, guid: e0e5dcc0177ad6a4ab5ff510e26111cb, type: 3}
     volume: 0.75
     pitch: 1
     loop: 1
+    mixerGroup: {fileID: 243828091912816552, guid: 31ad0aabfea88ad4ea0a0cd5e585b0a9,
+      type: 2}
     source: {fileID: 0}
   - name: LineClear
     clip: {fileID: 8300000, guid: e69014bf54b76d746a0b98f9e7b0f790, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    mixerGroup: {fileID: 243282216248901222, guid: 31ad0aabfea88ad4ea0a0cd5e585b0a9,
+      type: 2}
     source: {fileID: 0}
   - name: 4LineClear
     clip: {fileID: 8300000, guid: 7c6e027cebdd6904c93cc7e462435aa3, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    mixerGroup: {fileID: 243282216248901222, guid: 31ad0aabfea88ad4ea0a0cd5e585b0a9,
+      type: 2}
     source: {fileID: 0}
   - name: Theme
     clip: {fileID: 8300000, guid: 78095648b4783c54d9c72fcbb5d4e900, type: 3}
     volume: 0.75
     pitch: 1
     loop: 1
+    mixerGroup: {fileID: 243828091912816552, guid: 31ad0aabfea88ad4ea0a0cd5e585b0a9,
+      type: 2}
     source: {fileID: 0}
+  mixerGroup: {fileID: 0}

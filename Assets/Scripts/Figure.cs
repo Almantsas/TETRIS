@@ -56,7 +56,7 @@ public class Figure : MonoBehaviour {
                     FindObjectOfType<AudioManager>().Play("Drop");
                 }
                 enabled = false;
-                Invoke("Spawn", .5f);
+                Invoke("Spawn", .3f);
             }
             else
             {

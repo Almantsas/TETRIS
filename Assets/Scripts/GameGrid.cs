@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GameGrid : MonoBehaviour {
 
     public static Transform[,] gameGrid = new Transform[14, 24];
+    static Score score = FindObjectOfType(typeof(Score)) as Score;
     static SpeedUp speed = FindObjectOfType(typeof(SpeedUp)) as SpeedUp;
 
     public static void DeleteFullRows()
@@ -14,7 +15,7 @@ public class GameGrid : MonoBehaviour {
         {
             if (IsRowFull(row))
             {
-                Score.score++;
+                score.ScoreUp();
                 speed.IncreaseSpeed();
                 for (int col = 2; col < 12; col++)
                 {

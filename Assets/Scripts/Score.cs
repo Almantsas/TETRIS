@@ -5,10 +5,11 @@ using TMPro;
 
 public class Score : MonoBehaviour {
 
-    public static int score = 0;
+    public int score = 0;
 
-	// Update is called once per frame
-	void Update () {
+    public void ScoreUp()
+    {
+        score++;
         var scoreText = GetComponent<TextMeshProUGUI>();
         scoreText.text = score.ToString();
     }

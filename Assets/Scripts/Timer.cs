@@ -5,7 +5,7 @@ using TMPro;
 
 public class Timer : MonoBehaviour {
 
-    private float startTime;
+    float startTime;
 
 	// Use this for initialization
 	void Start () {

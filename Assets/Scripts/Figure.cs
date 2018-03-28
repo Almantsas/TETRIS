@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class Figure : MonoBehaviour {
 
     float lastFallDown = 0;
-    public static float speed = 1f;
     public bool canRotate;
 
     // Use this for initialization
@@ -42,10 +41,9 @@ public class Figure : MonoBehaviour {
                 UpdateGameGrid();
             }
         }
-        if (Input.GetKey(KeyCode.Space) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) || Time.time - lastFallDown >= speed)
+        if (Input.GetKey(KeyCode.Space) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) || Time.time - lastFallDown >= (FindObjectOfType(typeof(SpeedUp)) as SpeedUp).speed)
         {
             transform.position += new Vector3(0, -1, 0);
-
             if (!IsValidPos())
             {
                 transform.position += new Vector3(0, 1, 0);

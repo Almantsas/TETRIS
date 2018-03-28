@@ -40,11 +40,22 @@ public class PauseMenu : MonoBehaviour {
     public void LoadMenu()
     {
         Time.timeScale = 1f;
+        FindObjectOfType<AudioManager>().Stop("Theme");
         SceneManager.LoadScene("Menu");
     }
 
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void HoverSound()
+    {
+        FindObjectOfType<AudioManager>().Play("Rotate");
+    }
+
+    public void ClickSound()
+    {
+        FindObjectOfType<AudioManager>().Play("Drop");
     }
 }

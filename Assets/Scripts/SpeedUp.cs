@@ -22,36 +22,33 @@ public class SpeedUp : MonoBehaviour {
 
     public void IncreaseSpeed()
     {
-        Score scor = FindObjectOfType(typeof(Score)) as Score;
-        if (scor.score == 1)
+        var score = FindObjectOfType<Score>().score;
+        if (score == 3)
         {
-            speed -= .1f;
-            Show();
-            Invoke("Hide", 3f);
+            Speed();
         }
-        if (scor.score == 15)
+        if (score == 15)
         {
-            speed -= .1f;
-            Show();
-            Invoke("Hide", 3f);
+            Speed();
         }
-        if (scor.score == 25)
+        if (score == 25)
         {
-            speed -= .1f;
-            Show();
-            Invoke("Hide", 3f);
+            Speed();
         }
-        if (scor.score == 35)
+        if (score == 35)
         {
-            speed -= .1f;
-            Show();
-            Invoke("Hide", 3f);
+            Speed();
         }
-        if (scor.score == 45)
+        if (score == 45)
         {
-            speed -= .1f;
-            Show();
-            Invoke("Hide", 3f);
+            Speed();
         }
+    }
+
+    void Speed()
+    {
+        speed -= .1f;
+        Show();
+        Invoke("Hide", 3f);
     }
 }

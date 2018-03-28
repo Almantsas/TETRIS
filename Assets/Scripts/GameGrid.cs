@@ -1,22 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameGrid : MonoBehaviour {
 
     public static Transform[,] gameGrid = new Transform[14, 24];
-    static Score score = FindObjectOfType(typeof(Score)) as Score;
-    static SpeedUp speed = FindObjectOfType(typeof(SpeedUp)) as SpeedUp;
 
-    public static void DeleteFullRows()
+    public static bool DeleteFullRows()
     {
+        int lines = 0;
         for (int row = 21; row > 1; row--)
         {
             if (IsRowFull(row))
             {
-                score.ScoreUp();
-                speed.IncreaseSpeed();
+                FindObjectOfType<Score>().ScoreUp();
+                FindObjectOfType<SpeedUp>().IncreaseSpeed();
+                lines++;
+
                 for (int col = 2; col < 12; col++)
                 {
                     Destroy(gameGrid[col, row].gameObject);
@@ -36,7 +36,20 @@ public class GameGrid : MonoBehaviour {
                     }
                 }
             }
+
+            if (lines > 0 && lines != 4 && row == 2)
+            {
+                FindObjectOfType<AudioManager>().Play("LineClear");
+                return true;
+            }
+
+            if (lines == 4 && row == 2)
+            {
+                FindObjectOfType<AudioManager>().Play("4LineClear");
+                return true;
+            }
         }
+        return false;
     }
 
     static bool IsRowFull(int row)

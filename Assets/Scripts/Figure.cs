@@ -7,9 +7,11 @@ public class Figure : MonoBehaviour {
 
     float lastFallDown = 0;
     public bool canRotate;
+    float speed;
 
     // Use this for initialization
     void Start () {
+        speed = FindObjectOfType<SpeedUp>().speed;
         IsOver();
     }
 
@@ -26,6 +28,7 @@ public class Figure : MonoBehaviour {
             else
             {
                 UpdateGameGrid();
+                FindObjectOfType<AudioManager>().Play("Move");
             }
         }
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
@@ -39,21 +42,26 @@ public class Figure : MonoBehaviour {
             else
             {
                 UpdateGameGrid();
+                FindObjectOfType<AudioManager>().Play("Move");
             }
         }
-        if (Input.GetKey(KeyCode.Space) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) || Time.time - lastFallDown >= (FindObjectOfType(typeof(SpeedUp)) as SpeedUp).speed)
+        if (Input.GetKey(KeyCode.Space) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) || Time.time - lastFallDown >= speed)
         {
             transform.position += new Vector3(0, -1, 0);
             if (!IsValidPos())
             {
                 transform.position += new Vector3(0, 1, 0);
-                GameGrid.DeleteFullRows();
+                if (!GameGrid.DeleteFullRows())
+                {
+                    FindObjectOfType<AudioManager>().Play("Drop");
+                }
                 enabled = false;
-                Invoke("Spawn", 0.5f);
+                Invoke("Spawn", .5f);
             }
             else
             {
                 UpdateGameGrid();
+                FindObjectOfType<AudioManager>().Play("Move");
             }
 
             lastFallDown = Time.time;
@@ -73,6 +81,7 @@ public class Figure : MonoBehaviour {
                     if (Rotate())
                     {
                         UpdateGameGrid();
+                        FindObjectOfType<AudioManager>().Play("Rotate");
                     }
                 }
             }

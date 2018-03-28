@@ -13,13 +13,13 @@ public class GameOver : MonoBehaviour {
     {
         if (isOver)
         {
+            FindObjectOfType<AudioManager>().Stop("Theme");
             gameOverUI.SetActive(true);
             Time.timeScale = 0f;
         }
         else
         {
             gameOverUI.SetActive(false);
-            Time.timeScale = 1f;
         }
     }
 
@@ -27,6 +27,7 @@ public class GameOver : MonoBehaviour {
     {
         isOver = false;
         Time.timeScale = 1f;
+        FindObjectOfType<AudioManager>().Play("Theme");
         SceneManager.LoadScene("Main");
     }
 
@@ -34,11 +35,22 @@ public class GameOver : MonoBehaviour {
     {
         isOver = false;
         Time.timeScale = 1f;
+        FindObjectOfType<AudioManager>().Stop("Theme");
         SceneManager.LoadScene("Menu");
     }
 
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void HoverSound()
+    {
+        FindObjectOfType<AudioManager>().Play("Rotate");
+    }
+
+    public void ClickSound()
+    {
+        FindObjectOfType<AudioManager>().Play("Drop");
     }
 }

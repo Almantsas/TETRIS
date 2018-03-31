@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Audio;
 
 public class MainMenu : MonoBehaviour {
 
@@ -15,7 +14,7 @@ public class MainMenu : MonoBehaviour {
     {
         FindObjectOfType<AudioManager>().Stop("MainMenu");
         FindObjectOfType<AudioManager>().Play("Theme");
-        SceneManager.LoadScene("Main");
+        Initiate.Fade("Main", Color.black, 3.0f);
     }
 
     void QuitGame()

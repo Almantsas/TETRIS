@@ -29,7 +29,7 @@ public class GameOver : MonoBehaviour {
         isOver = false;
         Time.timeScale = 1f;
         FindObjectOfType<AudioManager>().Play("Theme");
-        SceneManager.LoadScene("Main");
+        Initiate.Fade("Main", Color.black, 3.0f);
     }
 
     public void LoadMenu()
@@ -37,7 +37,7 @@ public class GameOver : MonoBehaviour {
         isOver = false;
         Time.timeScale = 1f;
         FindObjectOfType<AudioManager>().Stop("Theme");
-        SceneManager.LoadScene("Menu");
+        Initiate.Fade("Menu", Color.black, 3.0f);
     }
 
     public void QuitGame()

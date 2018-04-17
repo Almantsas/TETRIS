@@ -6,7 +6,24 @@ public class SpeedUp : MonoBehaviour {
 
     public GameObject speedUpText;
     public GameObject logo;
-    public float speed = 1f;
+    public float speed;
+    public static string difficulty;
+
+    void Awake()
+    {
+        if(difficulty == "Easy")
+        {
+            speed = 1f;
+        }
+        else if(difficulty == "Medium")
+        {
+            speed = 0.85f;
+        }
+        else if (difficulty == "Hard")
+        {
+            speed = 0.7f;
+        }
+    }
 
     void Show()
     {
@@ -23,32 +40,37 @@ public class SpeedUp : MonoBehaviour {
     public void IncreaseSpeed()
     {
         var score = FindObjectOfType<Score>().score;
-        if (score == 3)
+        if (score == 5)
         {
-            Speed();
+            ReduceSpeed();
         }
         if (score == 15)
         {
-            Speed();
+            ReduceSpeed();
         }
         if (score == 25)
         {
-            Speed();
+            ReduceSpeed();
         }
         if (score == 35)
         {
-            Speed();
+            ReduceSpeed();
         }
         if (score == 45)
         {
-            Speed();
+            ReduceSpeed();
         }
     }
 
-    void Speed()
+    void ReduceSpeed()
     {
         speed -= .1f;
         Show();
         Invoke("Hide", 3f);
+    }
+
+    public void SetSpeed()
+    {
+        ReduceSpeed();
     }
 }

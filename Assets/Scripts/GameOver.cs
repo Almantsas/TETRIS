@@ -15,6 +15,7 @@ public class GameOver : MonoBehaviour {
         {
             FindObjectOfType<AudioManager>().Stop("Theme");
             gameOverUI.SetActive(true);
+            PlayerPrefs.SetInt("Score", FindObjectOfType<Score>().score);
             Time.timeScale = 0f;
         }
         else

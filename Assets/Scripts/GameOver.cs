@@ -7,20 +7,26 @@ public class GameOver : MonoBehaviour {
 
     public static bool isOver = false;
     public GameObject gameOverUI;
+    bool save = true;
 
     // Update is called once per frame
     void Update()
     {
         if (isOver)
         {
+            Time.timeScale = 0f;
             FindObjectOfType<AudioManager>().Stop("Theme");
             gameOverUI.SetActive(true);
-            PlayerPrefs.SetInt("Score", FindObjectOfType<Score>().score);
-            Time.timeScale = 0f;
+            if(save)
+            {
+                ScoreManager.AddScore(FindObjectOfType<Score>().score, FindObjectOfType<Timer>().t);
+                save = false;
+            }
         }
         else
         {
             gameOverUI.SetActive(false);
+            save = true;
         }
     }
 

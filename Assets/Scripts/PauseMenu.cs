@@ -7,6 +7,7 @@ public class PauseMenu : MonoBehaviour {
 
     public static bool isPaused = false;
     public GameObject pauseMenuUI;
+
 	
 	// Update is called once per frame
 	void Update () {
@@ -39,6 +40,7 @@ public class PauseMenu : MonoBehaviour {
 
     public void LoadMenu()
     {
+        ScoreManager.AddScore(FindObjectOfType<Score>().score, FindObjectOfType<Timer>().t);
         Time.timeScale = 1f;
         FindObjectOfType<AudioManager>().Stop("Theme");
         Initiate.Fade("Menu", Color.black, 3.0f);

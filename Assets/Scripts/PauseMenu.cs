@@ -40,7 +40,6 @@ public class PauseMenu : MonoBehaviour {
 
     public void LoadMenu()
     {
-        ScoreManager.AddScore(FindObjectOfType<Score>().score, FindObjectOfType<Timer>().t);
         Time.timeScale = 1f;
         FindObjectOfType<AudioManager>().Stop("Theme");
         Initiate.Fade("Menu", Color.black, 3.0f);

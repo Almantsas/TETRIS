@@ -48,6 +48,7 @@ public class PauseMenu : MonoBehaviour {
 
     public void QuitGame()
     {
+        ScoreManager.AddScore(FindObjectOfType<Score>().score, FindObjectOfType<Timer>().t);
         Application.Quit();
     }
 
